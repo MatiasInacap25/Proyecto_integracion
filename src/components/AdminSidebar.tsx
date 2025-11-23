@@ -1,0 +1,154 @@
+import { Home, LogOut, User, Archive, ArchiveRestore, ArchiveX, PackageSearch, SquareUserRound, Users, Truck, Package } from "lucide-react";
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
+import userpng from "@/assets/usericon.png";
+
+import { DropdownMenuLabel } from "@/components/ui/dropdown-menu";
+
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "../components/ui/avatar"
+import { Button } from "./ui/button";
+
+import { userStore } from "../store/user";
+
+import { Logout } from "@/api/api";
+
+export default function AdminSidebar() {
+    const items = [
+        {
+            title: "Inicio",
+            url: "/administrador",
+            icon: Home,
+        },
+        {
+            title: "Usuarios",
+            url: "/administrador/Usuarios",
+            icon: User,
+        },
+        {
+            title: "Historial Ingresos",
+            url: "/administrador/Ingresos",
+            icon: Archive,
+        },
+        {
+            title: "Historial Salidas",
+            url: "/administrador/Salidas",
+            icon: ArchiveRestore,
+        },
+        {
+            title: "Historial Mermas",
+            url: "/administrador/Mermas",
+            icon: ArchiveX,
+        },
+        {
+            title: "Productos",
+            url: "/administrador/Productos",
+            icon: PackageSearch,
+        },
+        {
+            title: "Proveedores",
+            url: "/administrador/Proveedores",
+            icon: SquareUserRound,
+        },
+        {
+            title: "Clientes",
+            url: "/administrador/Clientes",
+            icon: Users,
+        },
+        {
+            title: "Conductores",
+            url: "/administrador/Conductores",
+            icon: Truck,
+        },
+        {
+            title: "Reglas de Stock",
+            url: "/administrador/ReglasStock",
+            icon: Package,
+        },
+        {
+            title: "Comparacion Mermas",
+            url: "/administrador/ComparacionMermas",
+            icon: Package,
+        },
+        {
+            title: "Blockchain",
+            url: "/administrador/Blockchain",
+            icon: Package,
+        },
+    ]
+
+    const logoutUser = userStore((state) => state.logout);
+
+    const onSubmit = async () => {
+        console.log("Logging out...");
+        try {
+            const rest = await Logout();
+            if (rest.status === 200) {
+                logoutUser();
+                window.location.href = "/login";
+            }
+        } catch (error) {
+            console.error("Error during logout:", error);
+        }
+    }
+
+    const png = userpng;
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+    return (
+        <Sidebar>
+            <SidebarHeader className="shadow-neutral-500/50 shadow-2xs">
+                <DropdownMenuLabel>
+                    <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm ">
+                        <Avatar className="h-8 w-8 rounded-lg ">
+                            <AvatarImage src={png} alt={user.nombre} className="" />
+                            <AvatarFallback className="rounded-lg"></AvatarFallback>
+                        </Avatar>
+                        <div className="grid flex-1 text-left text-sm leading-tight">
+                            <span className="truncate font-medium">{user.nombre} {user.apellido}</span>
+                            <span className="truncate text-xs"></span>
+                        </div>
+                    </div>
+                </DropdownMenuLabel>
+            </SidebarHeader>
+            <SidebarContent>
+                <SidebarGroup>
+                    <SidebarGroupContent>
+                        <SidebarGroupContent>
+                            <SidebarMenu>
+                                {items.map((item) => (
+                                    <SidebarMenuItem className="rounded-md m-0.5" key={item.title}>
+                                        <SidebarMenuButton asChild>
+                                            <a href={item.url}>
+                                                <item.icon />
+                                                <span className="text-lg text-gray-700">{item.title}</span>
+                                            </a>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                ))}
+                            </SidebarMenu>
+                        </SidebarGroupContent>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            </SidebarContent>
+            <SidebarFooter className="p-4">
+                <Button variant="ghost" onClick={onSubmit} className="text-lg text-red-500 border-red-500 border-2 hover:text-red-600 ">
+                    <LogOut />
+                    Cerrar Sesión</Button>
+            </SidebarFooter>
+        </Sidebar>
+    )
+}

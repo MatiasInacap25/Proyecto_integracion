@@ -1,0 +1,21 @@
+pnpm create vite@latest
+-- nombre: proyecto_integracion
+-- framework: React
+-- Variant: TypeScript + SWC
+-- rolldown-vite: No
+-- Install with pnpm and start now?: Yes
+
+pnpm add tailwindcss @tailwindcss/vite
+pnpm add -D @types/node
+pnpm dlx shadcn@latest init
+
+pnpm install zustand
+pnpm add react-router-dom
+pnpm add axios
+pnpm install react-hook-form
+pnpm install sonner
+pnpm add react-select
+
+???
+pnpm add @tanstack/react-table   
+pnpm add jspdf html2canvas
