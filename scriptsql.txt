@@ -1,0 +1,32 @@
+INSERT INTO public.gestion_inventario_cargo(id, nombre, tipo)VALUES ('1', 'Bodeguero', 'bodeguero');
+INSERT INTO public.gestion_inventario_cargo(id, nombre, tipo)VALUES ('2', 'Jefe de bodega', 'fefe de bodega');
+INSERT INTO public.gestion_inventario_cargo(id, nombre, tipo)VALUES ('3', 'Auditor', 'auditor');
+INSERT INTO public.gestion_inventario_cargo(id, nombre, tipo)VALUES ('4', 'Administrador', 'administrador');
+
+INSERT INTO gestion_inventario_region values('1','Region Metropolitana')
+
+INSERT INTO public.gestion_inventario_bodega(id, nombre, comuna, calle, numero, region_id) VALUES ('1','Bodega principal', 'Santiago', 'almirante barroso', '7469', '1');
+
+INSERT INTO public.gestion_inventario_proveedor(id, nombre, rut, telefono, direccion, email) VALUES ('1', 'Diego', 'Gonzalez', '86324583', 'av. los dominicos', 'diegobebidas@gmail.com');
+
+INSERT INTO public.gestion_inventario_unidadmedida(id, nombre, abreviatura) VALUES ('1', 'Unidad', 'UN');
+
+INSERT INTO public.gestion_inventario_unidadmedida(id, nombre, abreviatura) VALUES ('2', 'Kilogramo', 'KG');    
+
+INSERT INTO public.gestion_inventario_unidadmedida(id, nombre, abreviatura) VALUES ('3', 'Litros', 'LT');
+
+INSERT INTO public.gestion_inventario_categoria(id, nombre)VALUES ('1', 'Bebidas');
+
+INSERT INTO public.gestion_inventario_producto (id, nombre, cantidad_por_lote, precio_unitario, categoria_id, unidad_medida_id) VALUES ('1', 'Coca Cola 350ml', '200', '350', '1', '1');
+
+INSERT INTO public.gestion_inventario_producto( id, nombre, cantidad_por_lote, precio_unitario, categoria_id, unidad_medida_id) VALUES ('2', 'Fanta 350ml', '200', '350', '1', '1');
+
+INSERT INTO public.gestion_inventario_categoriamerma(id, nombre) VALUES ('1', 'Vencimiento');
+
+INSERT INTO public.gestion_inventario_categoriamerma(id, nombre) VALUES ('2', 'Robo');
+
+INSERT INTO public.gestion_inventario_categoriamerma(id, nombre) VALUES ('3', 'Rotura');
+
+INSERT INTO public.gestion_inventario_categoriamerma(id, nombre) VALUES ('4', 'Otro');
+
+

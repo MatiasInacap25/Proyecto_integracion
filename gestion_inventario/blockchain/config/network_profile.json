@@ -1,0 +1,8 @@
+{
+  "name": "sample-network-profile",
+  "version": "1.0.0",
+  "description": "Sample connection profile for Hyperledger Fabric (example only).",
+  "organizations": {},
+  "peers": {},
+  "orderers": {}
+}
